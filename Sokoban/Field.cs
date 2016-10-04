@@ -8,5 +8,21 @@ namespace Sokoban
 {
     class Field : BaseField
     {
+        private Box box;
+        private Player player;
+
+        public Field()
+        {
+        }
+
+        public Field(Player player)
+        {
+            this.player = player;
+        }
+
+        public Field(Box box)
+        {
+            this.box = box;
+        }
     }
 }

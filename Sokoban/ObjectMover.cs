@@ -8,5 +8,11 @@ namespace Sokoban
 {
     class ObjectMover
     {
+        private Board board;
+
+        public ObjectMover(Board board)
+        {
+            this.board = board;
+        }
     }
 }

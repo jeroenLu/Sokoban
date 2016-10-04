@@ -10,6 +10,8 @@ namespace Sokoban
     {
         static void Main(string[] args)
         {
+            GameController Sokoban = new GameController();
+            Sokoban.SetUpGame();
         }
     }
 }
