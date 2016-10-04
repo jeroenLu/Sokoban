@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="94b111b3-0146-4c30-8625-2a85335e9a43" name="UMLClassDiagram1" linkedPackageId="b4caecfe-ce9c-48d5-bfef-638048ff64fe" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="b13eac39-e8b2-4d55-b8be-085fcac0a3a4">
-      <profileInstance Id="f69582a1-3db5-4f01-a634-42faa47130f5" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="010214e6-68e2-41d1-9e4d-16449ffc4132">
-      <profileInstance Id="674075bd-e81a-4928-95e3-ad47032368e1" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="1378e2ef-c555-4463-9767-0501fe06019f" name="Player" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -160,32 +146,6 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="c86af147-38dc-435e-93b7-2ec059805929" />
           </association>
-          <association Id="2b8f58f4-3ed8-4659-911b-e83227746055" isDerived="false" sourceEndRoleName="BaseField" targetEndRoleName="BaseField" isLeaf="false" isAbstract="false">
-            <classMoniker Id="856a7e6c-0f92-4cae-85e1-af26c9c18c02" LastKnownName="BaseField" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="0bb93e2d-0c6b-49b8-b090-5760e01a48c3" name="BaseField" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="d614fa82-340e-499b-b14f-2ff5d5773057" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="bc11161f-be08-4658-b2c8-729d5bea3674" name="BaseField" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <lowerValueInternal>
-                    <literalString Id="0b2b6d9c-5409-44b2-9edb-9a5cc294219f" name="Lower" value="0">
-                      <elementDefinition Id="7e18a183-517b-4f03-92a7-a53248430b4f" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="79386348-120c-4370-bfdc-d26799c58832" name="Upper" value="1">
-                      <elementDefinition Id="db9978a2-70e5-4dfe-91dc-44bb517c7e01" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="6c6ffe32-2bb3-43d8-8efa-89e96a161203" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="4b66e8a6-89cb-47d3-bc9f-36debdf6ba57" />
-          </association>
         </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -258,6 +218,16 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd Id="a1f979bd-6afa-4ebe-8659-9b05998dd1fe" name="BaseField" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="656d9cf5-c63f-48c6-8ecf-761f6dde58a4" name="Lower" value="N">
+                      <elementDefinition Id="730b49b2-985b-4621-9184-525135b8bbec" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="007c63c0-a584-439c-ba6d-36488f1cf1d9" name="Upper" value="N">
+                      <elementDefinition Id="52d89b73-a0c6-4897-b5fe-4320f2899390" />
+                    </literalString>
+                  </upperValueInternal>
                   <elementDefinition Id="094f5c98-e2db-4dea-825b-dbe7de39e3fb" />
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -298,5 +268,19 @@
   </packagedElements>
   <package Id="b4caecfe-ce9c-48d5-bfef-638048ff64fe" name="ModelingProject1">
     <elementDefinition Id="8cb38810-03e1-4c39-b135-415ede35ca3e" />
+    <profileInstances>
+      <packageHasProfileInstances Id="b13eac39-e8b2-4d55-b8be-085fcac0a3a4">
+        <profileInstance Id="f69582a1-3db5-4f01-a634-42faa47130f5" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="010214e6-68e2-41d1-9e4d-16449ffc4132">
+        <profileInstance Id="674075bd-e81a-4928-95e3-ad47032368e1" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>

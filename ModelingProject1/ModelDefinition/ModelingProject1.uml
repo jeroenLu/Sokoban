@@ -327,58 +327,6 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
-          <association
-            Id="4b66e8a6-89cb-47d3-bc9f-36debdf6ba57"
-            isDerived="false"
-            sourceEndRoleName="BaseField"
-            targetEndRoleName="BaseField"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="4c11cd17-54eb-47cc-a9d5-a3bfe46e4307"
-              LastKnownName="BaseField"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="d614fa82-340e-499b-b14f-2ff5d5773057"
-                  name="BaseField"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="6c6ffe32-2bb3-43d8-8efa-89e96a161203"
-                  name="BaseField"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="7e18a183-517b-4f03-92a7-a53248430b4f"
-                      name="Lower"
-                      value="0" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="db9978a2-70e5-4dfe-91dc-44bb517c7e01"
-                      name="Upper"
-                      value="1" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -520,7 +468,20 @@
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="false" />
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="730b49b2-985b-4621-9184-525135b8bbec"
+                      name="Lower"
+                      value="N" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="52d89b73-a0c6-4897-b5fe-4320f2899390"
+                      name="Upper"
+                      value="N" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
