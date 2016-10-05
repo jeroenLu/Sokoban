@@ -19,13 +19,17 @@ namespace Sokoban
         internal void SetUpGame()
         {
             Game = new Game();
-
-            //Kan evt mooier door loadboard een array te laten returnen ipv deze eerst op te slaan ??? 
             LoadBoard();
             Console.Clear();
             Game.AddBoard(LoadedBoard);
-            _playing = true;
             Game.CreateObjectMover();
+            PlayGame();
+            
+        }
+
+        private void PlayGame()
+        {
+            _playing = true;
             while (_playing)
             {
                 Direction direction = ReadInput();
@@ -44,7 +48,6 @@ namespace Sokoban
             }
             Console.WriteLine("Congratulations!! Thank you for playing Sokoban");
             Console.ReadKey();
-            
         }
 
         private bool CheckGameOver()

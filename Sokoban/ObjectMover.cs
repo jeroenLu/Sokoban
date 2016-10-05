@@ -33,9 +33,6 @@ namespace Sokoban
                     }
                 }
             }
-
-
-
         }
 
         internal void TryMove(Direction direction)

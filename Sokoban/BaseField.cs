@@ -8,11 +8,6 @@ namespace Sokoban
 {
     class BaseField
     {
-
         public GameObject Object { get; set; }
-
-
-        
-        
     }
 }
