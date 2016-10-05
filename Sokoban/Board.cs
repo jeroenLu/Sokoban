@@ -31,30 +31,36 @@ namespace Sokoban
                     if (LoadedBoard[x, i].GetType() == typeof(Wall))
                     {
                         Console.Write("#");
+                        continue;
                     }
                     if (LoadedBoard[x, i].GetType() == typeof(Field))
                     {
                         if(LoadedBoard[x,i].Object?.GetType() == typeof(Player))
                         {
                             Console.Write("@");
+                            continue;
                         }
                         else if (LoadedBoard[x, i].Object?.GetType() == typeof(Box))
                         {
                             Console.Write("o");
+                            continue;
                         }
                         else
                         {
                             Console.Write(".");
+                            continue;
                         }
                        
                     }
                     if (LoadedBoard[x, i].GetType() == typeof(EndField))
                     {
                         Console.Write("x");
+                        continue;
                     }
                     if (LoadedBoard[x, i].GetType() == typeof(BaseField))
                     {
                         Console.Write(" ");
+                        continue;
                     }
                     
                 }

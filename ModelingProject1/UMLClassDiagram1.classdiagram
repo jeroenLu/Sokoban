@@ -183,17 +183,6 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="d032b12b-0a21-4f7f-a7f0-0e2db4444ce1" name="StartField" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="8d57d89f-2f82-4875-b35c-5cc65e8faccc" />
-        <generalsInternal>
-          <generalization Id="78d37cf6-7d41-405c-b517-ec7cdd1850ef" isSubstitutable="false">
-            <classMoniker Id="856a7e6c-0f92-4cae-85e1-af26c9c18c02" LastKnownName="BaseField" />
-            <elementDefinition Id="ab170a66-75e3-4069-a7aa-8e6d18ec4d53" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
       <class Id="dd77a67c-4234-465d-9d57-d6044f68131e" name="Box" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="c092bfce-2815-4f33-a1e8-95870de755d4" />
         <generalsInternal>
