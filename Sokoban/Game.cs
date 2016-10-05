@@ -15,7 +15,7 @@ namespace Sokoban
 
         public Game()
         {
-            Board = new Board();
+            
             ObjectMover = new ObjectMover(Board);
             Player = new Player();
             playing = true;
@@ -25,10 +25,22 @@ namespace Sokoban
         internal void StartGame()
         {
             PrintIntro();
+
             Console.ReadKey();
             Console.Clear();
             
+            Console.ReadKey();
         }
+
+        public void AddBoard(BaseField[,] board)
+        {
+            Board = new Board(board);
+            // tijdelijk hier show aan roepen, later verplaatsen --------------------------------------------
+            Board.ShowBoard();
+            Console.ReadKey();
+        }
+
+        public Player GetPlayer() { return Player; }
 
         private void PrintIntro()
         {

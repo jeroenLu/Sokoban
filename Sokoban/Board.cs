@@ -8,28 +8,60 @@ namespace Sokoban
 {
     class Board
     {
-        private LinkedList<BaseField> GameBoard;
-        private int width;
+        private long width;
         private int height;
-        private Dictionary<int, BaseField> FieldType;
-        public Board()
+        private BaseField[,] LoadedBoard;
+
+
+        public Board(BaseField[,] board)
         {
-            GameBoard = new LinkedList<BaseField>();
-            CreateBoard();
+            LoadedBoard = board;
         }
 
-       
-
-        private void CreateBoard()
+        public void ShowBoard()
         {
-            this.width = 8;
-            this.height = 8;
 
+            width = LoadedBoard.GetLength(0);
+            height = LoadedBoard.GetLength(1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (LoadedBoard[x, i].GetType() == typeof(Wall))
+                    {
+                        Console.Write("#");
+                    }
+                    if (LoadedBoard[x, i].GetType() == typeof(Field))
+                    {
+                        if(LoadedBoard[x,i].Object?.GetType() == typeof(Player))
+                        {
+                            Console.Write("@");
+                        }
+                        else if (LoadedBoard[x, i].Object?.GetType() == typeof(Box))
+                        {
+                            Console.Write("o");
+                        }
+                        else
+                        {
+                            Console.Write(".");
+                        }
+                       
+                    }
+                    if (LoadedBoard[x, i].GetType() == typeof(EndField))
+                    {
+                        Console.Write("x");
+                    }
+                    else
+                    {
+
+                        Console.Write("");
+
+                    }
+                }
+                Console.WriteLine();
+            }
 
         }
-
-
     }
-
-    
 }

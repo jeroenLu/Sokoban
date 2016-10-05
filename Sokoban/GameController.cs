@@ -19,18 +19,12 @@ namespace Sokoban
         {
             Game = new Game();
             Game.StartGame();
+
+            //Kan evt mooier door loadboard een array te laten returnen ipv deze eerst op te slaan ??? 
             LoadBoard();
             Console.ReadKey();
-            for (int i = 0; i < _levelHeight; i++)
-            {
-                for (int x = 0; x < _levelWidth; x++)
-                {
-                    Console.Write(LoadedBoard[x, i]);
-                }
-                Console.WriteLine();
-            }
-            Console.ReadKey();
-
+            Game.AddBoard(LoadedBoard);
+            
         }
 
         private void LoadBoard()
@@ -63,10 +57,7 @@ namespace Sokoban
             string[] fileLines = File.ReadAllLines(path);
 
             _levelHeight = fileLines.Length;
-            _levelWidth = fileLines[0].Length;
-
-            Console.WriteLine("This is height " + _levelHeight);
-            Console.WriteLine("This is width " + _levelWidth);
+            _levelWidth = fileLines[0].Length;           
 
             LoadedBoard = new BaseField[_levelWidth, _levelHeight];
 
@@ -81,7 +72,7 @@ namespace Sokoban
                             LoadedBoard[x, _levelHeight] = new Wall();
                             break;
                         case 'o':
-                            LoadedBoard[x, _levelHeight] = new Field(new Box());
+                            LoadedBoard[x, _levelHeight] = new Field {Object = new Box()};
                             break;
                         case '.':
                             LoadedBoard[x, _levelHeight] = new Field();
@@ -90,7 +81,7 @@ namespace Sokoban
                             LoadedBoard[x, _levelHeight] = new EndField();
                             break;
                         case '@':
-                            LoadedBoard[x, _levelHeight] = new Field(new Player());
+                            LoadedBoard[x, _levelHeight] = new Field { Object = new Player() };
                             break;
                         default:
                             LoadedBoard[x, _levelHeight] = new BaseField();
@@ -100,5 +91,6 @@ namespace Sokoban
                 _levelHeight++;
             }
         }
+
     }
 }

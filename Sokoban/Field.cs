@@ -24,5 +24,7 @@ namespace Sokoban
         {
             this.box = box;
         }
+
+        
     }
 }
