@@ -85,7 +85,7 @@ namespace Sokoban
 
             while (!chosen)
             {
-                Console.WriteLine("Please input the level you want to select");
+                Console.WriteLine("Please input the level you want to select (1 - 4)");
 
                 // Hier wordt input van de user gevraagd welk level hij wil laden
                 char selectedLevel;

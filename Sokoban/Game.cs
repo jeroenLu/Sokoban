@@ -34,7 +34,18 @@ namespace Sokoban
 
         private void PrintIntro()
         {
-            Console.WriteLine("Welcome to SOKOBAN");
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine("| Welkom bij Sokoban                              |");
+            Console.WriteLine("|                                                 |");
+            Console.WriteLine("| betekenis van de symbolen  | doel van het spel  |");
+            Console.WriteLine("|                            |                    |");
+            Console.WriteLine("| # : muur                   | duw met de truck   |");
+            Console.WriteLine("| . : vloer                  | de krat(ten)       |");
+            Console.WriteLine("| o : krat                   | naar de bestemming |");
+            Console.WriteLine("| 0 : krat op bestemming     |                    |");
+            Console.WriteLine("| x : bestemming             | s = stop           |");
+            Console.WriteLine("| @ : truck                  | r = reset          |");
+            Console.WriteLine("|_________________________________________________|");
         }
 
         public void Move(Direction direction)
