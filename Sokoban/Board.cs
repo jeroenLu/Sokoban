@@ -52,12 +52,11 @@ namespace Sokoban
                     {
                         Console.Write("x");
                     }
-                    else
+                    if (LoadedBoard[x, i].GetType() == typeof(BaseField))
                     {
-
-                        Console.Write("");
-
+                        Console.Write(" ");
                     }
+                    
                 }
                 Console.WriteLine();
             }
