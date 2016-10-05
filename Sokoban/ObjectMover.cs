@@ -74,11 +74,57 @@ namespace Sokoban
                 if(board.LoadedBoard[playerX, playerY - 1].GetType() == typeof(Wall)) return false;
                 if (board.LoadedBoard[playerX, playerY - 1].Object?.GetType() == typeof(Box)){
                     if (board.LoadedBoard[playerX, playerY - 2].GetType() == typeof(Wall) || board.LoadedBoard[playerX, playerY - 2].Object?.GetType() == typeof(Box)) return false;
+                    else { MoveBox(direction); }
+                } 
+            }
+            if (direction == Direction.DOWN)
+            {
+                if (board.LoadedBoard[playerX, playerY + 1].GetType() == typeof(Wall)) return false;
+                if (board.LoadedBoard[playerX, playerY + 1].Object?.GetType() == typeof(Box))
+                {
+                    if (board.LoadedBoard[playerX, playerY + 2].GetType() == typeof(Wall) || board.LoadedBoard[playerX, playerY + 2].Object?.GetType() == typeof(Box)) return false;
+                    else { MoveBox(direction); }
                 }
-
-                
+            }
+            if (direction == Direction.LEFT)
+            {
+                if (board.LoadedBoard[playerX - 1, playerY].GetType() == typeof(Wall)) return false;
+                if (board.LoadedBoard[playerX - 1, playerY].Object?.GetType() == typeof(Box))
+                {
+                    if (board.LoadedBoard[playerX - 2, playerY].GetType() == typeof(Wall) || board.LoadedBoard[playerX - 2, playerY].Object?.GetType() == typeof(Box)) return false;
+                    else { MoveBox(direction); }
+                }
+            }
+            if (direction == Direction.RIGHT)
+            {
+                if (board.LoadedBoard[playerX + 1, playerY].GetType() == typeof(Wall)) return false;
+                if (board.LoadedBoard[playerX + 1, playerY].Object?.GetType() == typeof(Box))
+                {
+                    if (board.LoadedBoard[playerX + 2, playerY].GetType() == typeof(Wall) || board.LoadedBoard[playerX + 2, playerY].Object?.GetType() == typeof(Box)) return false;
+                    else { MoveBox(direction); }
+                }
             }
             return true;
+        }
+
+        private void MoveBox(Direction direction)
+        {
+            if (direction == Direction.UP)
+            {
+                board.LoadedBoard[playerX, playerY - 2].Object = board.LoadedBoard[playerX, playerY - 1].Object;
+            }
+            if (direction == Direction.DOWN)
+            {
+                board.LoadedBoard[playerX, playerY + 2].Object = board.LoadedBoard[playerX, playerY + 1].Object;
+            }
+            if (direction == Direction.LEFT)
+            {
+                board.LoadedBoard[playerX - 2, playerY].Object = board.LoadedBoard[playerX - 1, playerY].Object;
+            }
+            if (direction == Direction.RIGHT)
+            {
+                board.LoadedBoard[playerX + 2, playerY].Object = board.LoadedBoard[playerX + 1, playerY].Object;
+            }
         }
     }
 }
