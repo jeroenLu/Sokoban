@@ -40,6 +40,7 @@ namespace Sokoban
 
         internal void TryMove(Direction direction)
         {
+            if (!ValidMove(direction)) return;
             if(direction == Direction.UP)
             {
                 board.LoadedBoard[playerX, playerY - 1].Object = player;
@@ -64,6 +65,20 @@ namespace Sokoban
                 board.LoadedBoard[playerX, playerY].Object = null;
                 playerX++;
             }
+        }
+
+        private bool ValidMove(Direction direction)
+        {
+            if (direction == Direction.UP)
+            {
+                if(board.LoadedBoard[playerX, playerY - 1].GetType() == typeof(Wall)) return false;
+                if (board.LoadedBoard[playerX, playerY - 1].Object?.GetType() == typeof(Box)){
+                    if (board.LoadedBoard[playerX, playerY - 2].GetType() == typeof(Wall) || board.LoadedBoard[playerX, playerY - 2].Object?.GetType() == typeof(Box)) return false;
+                }
+
+                
+            }
+            return true;
         }
     }
 }
