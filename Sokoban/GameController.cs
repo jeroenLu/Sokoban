@@ -13,18 +13,42 @@ namespace Sokoban
         private Game Game;
         private BaseField[,] LoadedBoard;
         private int _levelWidth, _levelHeight;
+        private bool _playing;
 
 
         internal void SetUpGame()
         {
             Game = new Game();
-            Game.StartGame();
 
             //Kan evt mooier door loadboard een array te laten returnen ipv deze eerst op te slaan ??? 
             LoadBoard();
             Console.ReadKey();
             Game.AddBoard(LoadedBoard);
+            _playing = true;
+            Game.StartGame();
+            while (_playing)
+            {
+                Direction direction = ReadInput();
+                if (direction != Direction.INVALID)
+                {
+                    Game.Move(direction);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid move");
+                }
+            }
             
+        }
+
+        private Direction ReadInput()
+        {
+            ConsoleKeyInfo input = Console.ReadKey();
+            if(input.Key == ConsoleKey.UpArrow) { return Direction.UP; }
+            if (input.Key == ConsoleKey.DownArrow) { return Direction.DOWN; }
+            if (input.Key == ConsoleKey.LeftArrow) { return Direction.LEFT; }
+            if (input.Key == ConsoleKey.RightArrow) { return Direction.RIGHT; }
+            return Direction.INVALID;
         }
 
         private void LoadBoard()
@@ -81,7 +105,7 @@ namespace Sokoban
                             LoadedBoard[x, _levelHeight] = new EndField();
                             break;
                         case '@':
-                            LoadedBoard[x, _levelHeight] = new Field { Object = new Player() };
+                            LoadedBoard[x, _levelHeight] = new Field { Object = Game.GetPlayer() };
                             break;
                         default:
                             LoadedBoard[x, _levelHeight] = new BaseField();

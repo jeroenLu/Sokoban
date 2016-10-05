@@ -15,8 +15,6 @@ namespace Sokoban
 
         public Game()
         {
-            
-            ObjectMover = new ObjectMover(Board);
             Player = new Player();
             playing = true;
         }
@@ -25,7 +23,7 @@ namespace Sokoban
         internal void StartGame()
         {
             PrintIntro();
-
+            ObjectMover = new ObjectMover(Board, Player);
             Console.ReadKey();
             Console.Clear();
             
@@ -45,6 +43,14 @@ namespace Sokoban
         private void PrintIntro()
         {
             Console.WriteLine("Welcome to SOKOBAN");
+        }
+
+        public void Move(Direction direction)
+        {
+            ObjectMover.TryMove(direction);
+            Console.WriteLine(direction);
+            Board.ShowBoard();
+            Console.ReadKey();
         }
     }
 }

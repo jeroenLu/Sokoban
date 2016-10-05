@@ -9,10 +9,61 @@ namespace Sokoban
     class ObjectMover
     {
         private Board board;
-
-        public ObjectMover(Board board)
+        private Player player;
+        private int playerX;
+        private int playerY;
+        public ObjectMover(Board board, Player player)
         {
             this.board = board;
+            this.player = player;
+            SearchPlayer(board.LoadedBoard);
+            
+        }
+
+        public void SearchPlayer(BaseField[,] board)
+        {
+            for(int y = 0; y < board.GetLength(1); y++)
+            {
+                for(int x = 0; x < board.GetLength(0); x++)
+                {
+                    if(board[x,y].Object?.GetType() == typeof(Player))
+                    {
+                        playerX = x;
+                        playerY = y;
+                    }
+                }
+            }
+
+
+
+        }
+
+        internal void TryMove(Direction direction)
+        {
+            if(direction == Direction.UP)
+            {
+                board.LoadedBoard[playerX, playerY - 1].Object = player;
+                board.LoadedBoard[playerX, playerY].Object = null;
+                playerY--;
+            }
+            if (direction == Direction.DOWN)
+            {
+                board.LoadedBoard[playerX, playerY + 1].Object = player;
+                board.LoadedBoard[playerX, playerY].Object = null;
+                playerY++;
+            }
+            if (direction == Direction.LEFT)
+            {
+                board.LoadedBoard[playerX -1, playerY].Object = player;
+                board.LoadedBoard[playerX, playerY].Object = null;
+                playerX--;
+            }
+            if (direction == Direction.RIGHT)
+            {
+                board.LoadedBoard[playerX + 1, playerY].Object = player;
+                board.LoadedBoard[playerX, playerY].Object = null;
+                playerX++;
+            }
         }
     }
 }

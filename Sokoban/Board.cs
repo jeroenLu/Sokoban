@@ -10,7 +10,7 @@ namespace Sokoban
     {
         private long width;
         private int height;
-        private BaseField[,] LoadedBoard;
+        public BaseField[,] LoadedBoard { get; set; }
 
 
         public Board(BaseField[,] board)
