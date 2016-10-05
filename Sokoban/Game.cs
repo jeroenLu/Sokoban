@@ -11,23 +11,17 @@ namespace Sokoban
         Board Board;
         ObjectMover ObjectMover;
         Player Player;
-        private bool playing;
 
         public Game()
         {
             Player = new Player();
-            playing = true;
+            PrintIntro();
         }
 
 
         internal void StartGame()
         {
-            PrintIntro();
             ObjectMover = new ObjectMover(Board, Player);
-            Console.ReadKey();
-            Console.Clear();
-            
-            Console.ReadKey();
         }
 
         public void AddBoard(BaseField[,] board)
@@ -35,7 +29,6 @@ namespace Sokoban
             Board = new Board(board);
             // tijdelijk hier show aan roepen, later verplaatsen --------------------------------------------
             Board.ShowBoard();
-            Console.ReadKey();
         }
 
         public Player GetPlayer() { return Player; }
@@ -47,10 +40,10 @@ namespace Sokoban
 
         public void Move(Direction direction)
         {
+            Console.Clear();
             ObjectMover.TryMove(direction);
             Console.WriteLine(direction);
             Board.ShowBoard();
-            Console.ReadKey();
         }
     }
 }

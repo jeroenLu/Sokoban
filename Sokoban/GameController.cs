@@ -22,7 +22,6 @@ namespace Sokoban
 
             //Kan evt mooier door loadboard een array te laten returnen ipv deze eerst op te slaan ??? 
             LoadBoard();
-            Console.ReadKey();
             Game.AddBoard(LoadedBoard);
             _playing = true;
             Game.StartGame();
