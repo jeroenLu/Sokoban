@@ -31,13 +31,38 @@ namespace Sokoban
                 if (direction != Direction.INVALID)
                 {
                     Game.Move(direction);
+                    if (CheckGameOver())
+                    {
+                        _playing = false;
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Invalid move");
                 }
             }
+            Console.WriteLine("Congratulations!! Thank you for playing Sokoban");
+            Console.ReadKey();
             
+        }
+
+        private bool CheckGameOver()
+        {
+            bool GameOver = true;
+            for (int y = 0; y < LoadedBoard.GetLength(1); y++)
+            {
+                for (int x = 0; x < LoadedBoard.GetLength(0); x++)
+                {
+                    if (LoadedBoard[x, y].GetType() == typeof(EndField))
+                    {
+                        if (LoadedBoard[x, y].Object?.GetType() != typeof(Box))
+                        {
+                            GameOver = false;
+                        }
+                    }
+                }
+            }
+            return GameOver;
         }
 
         private Direction ReadInput()
@@ -47,6 +72,8 @@ namespace Sokoban
             if (input.Key == ConsoleKey.DownArrow) { return Direction.DOWN; }
             if (input.Key == ConsoleKey.LeftArrow) { return Direction.LEFT; }
             if (input.Key == ConsoleKey.RightArrow) { return Direction.RIGHT; }
+            if (input.Key == ConsoleKey.R) { Console.Clear(); SetUpGame(); }
+            if (input.Key == ConsoleKey.S) { Environment.Exit(0); }
             return Direction.INVALID;
         }
 

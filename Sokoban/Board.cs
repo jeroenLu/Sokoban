@@ -54,6 +54,16 @@ namespace Sokoban
                     }
                     if (LoadedBoard[x, i].GetType() == typeof(EndField))
                     {
+                        if (LoadedBoard[x, i].Object?.GetType() == typeof(Player))
+                        {
+                            Console.Write("@");
+                            continue;
+                        }
+                        else if (LoadedBoard[x, i].Object?.GetType() == typeof(Box))
+                        {
+                            Console.Write("0");
+                            continue;
+                        }
                         Console.Write("x");
                         continue;
                     }
