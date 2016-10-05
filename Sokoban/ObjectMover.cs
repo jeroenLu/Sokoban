@@ -41,90 +41,100 @@ namespace Sokoban
         internal void TryMove(Direction direction)
         {
             if (!ValidMove(direction)) return;
-            if(direction == Direction.UP)
+            switch (direction)
             {
-                board.LoadedBoard[playerX, playerY - 1].Object = player;
-                board.LoadedBoard[playerX, playerY].Object = null;
-                playerY--;
+                case Direction.UP:
+                    board.LoadedBoard[playerX, playerY - 1].Object = player;
+                    board.LoadedBoard[playerX, playerY].Object = null;
+                    playerY--;
+                    break;
+
+                case Direction.DOWN:
+                    board.LoadedBoard[playerX, playerY + 1].Object = player;
+                    board.LoadedBoard[playerX, playerY].Object = null;
+                    playerY++;
+                    break;
+
+                case Direction.LEFT:
+                    board.LoadedBoard[playerX - 1, playerY].Object = player;
+                    board.LoadedBoard[playerX, playerY].Object = null;
+                    playerX--;
+                    break;
+
+                case Direction.RIGHT:
+                    board.LoadedBoard[playerX + 1, playerY].Object = player;
+                    board.LoadedBoard[playerX, playerY].Object = null;
+                    playerX++;
+                    break;
             }
-            if (direction == Direction.DOWN)
-            {
-                board.LoadedBoard[playerX, playerY + 1].Object = player;
-                board.LoadedBoard[playerX, playerY].Object = null;
-                playerY++;
-            }
-            if (direction == Direction.LEFT)
-            {
-                board.LoadedBoard[playerX -1, playerY].Object = player;
-                board.LoadedBoard[playerX, playerY].Object = null;
-                playerX--;
-            }
-            if (direction == Direction.RIGHT)
-            {
-                board.LoadedBoard[playerX + 1, playerY].Object = player;
-                board.LoadedBoard[playerX, playerY].Object = null;
-                playerX++;
-            }
+            
         }
 
         private bool ValidMove(Direction direction)
         {
-            if (direction == Direction.UP)
+            switch (direction)
             {
-                if(board.LoadedBoard[playerX, playerY - 1].GetType() == typeof(Wall)) return false;
-                if (board.LoadedBoard[playerX, playerY - 1].Object?.GetType() == typeof(Box)){
-                    if (board.LoadedBoard[playerX, playerY - 2].GetType() == typeof(Wall) || board.LoadedBoard[playerX, playerY - 2].Object?.GetType() == typeof(Box)) return false;
-                    else { MoveBox(direction); }
-                } 
-            }
-            if (direction == Direction.DOWN)
-            {
-                if (board.LoadedBoard[playerX, playerY + 1].GetType() == typeof(Wall)) return false;
-                if (board.LoadedBoard[playerX, playerY + 1].Object?.GetType() == typeof(Box))
-                {
-                    if (board.LoadedBoard[playerX, playerY + 2].GetType() == typeof(Wall) || board.LoadedBoard[playerX, playerY + 2].Object?.GetType() == typeof(Box)) return false;
-                    else { MoveBox(direction); }
-                }
-            }
-            if (direction == Direction.LEFT)
-            {
-                if (board.LoadedBoard[playerX - 1, playerY].GetType() == typeof(Wall)) return false;
-                if (board.LoadedBoard[playerX - 1, playerY].Object?.GetType() == typeof(Box))
-                {
-                    if (board.LoadedBoard[playerX - 2, playerY].GetType() == typeof(Wall) || board.LoadedBoard[playerX - 2, playerY].Object?.GetType() == typeof(Box)) return false;
-                    else { MoveBox(direction); }
-                }
-            }
-            if (direction == Direction.RIGHT)
-            {
-                if (board.LoadedBoard[playerX + 1, playerY].GetType() == typeof(Wall)) return false;
-                if (board.LoadedBoard[playerX + 1, playerY].Object?.GetType() == typeof(Box))
-                {
-                    if (board.LoadedBoard[playerX + 2, playerY].GetType() == typeof(Wall) || board.LoadedBoard[playerX + 2, playerY].Object?.GetType() == typeof(Box)) return false;
-                    else { MoveBox(direction); }
-                }
+                case Direction.UP:
+                    if (board.LoadedBoard[playerX, playerY - 1].GetType() == typeof(Wall)) return false;
+                    if (board.LoadedBoard[playerX, playerY - 1].Object?.GetType() == typeof(Box))
+                    {
+                        if (board.LoadedBoard[playerX, playerY - 2].GetType() == typeof(Wall) || board.LoadedBoard[playerX, playerY - 2].Object?.GetType() == typeof(Box)) return false;
+                        else { MoveBox(direction); }
+                       
+                    }
+                    break;
+
+                case Direction.DOWN:
+                    if (board.LoadedBoard[playerX, playerY + 1].GetType() == typeof(Wall)) return false;
+                    if (board.LoadedBoard[playerX, playerY + 1].Object?.GetType() == typeof(Box))
+                    {
+                        if (board.LoadedBoard[playerX, playerY + 2].GetType() == typeof(Wall) || board.LoadedBoard[playerX, playerY + 2].Object?.GetType() == typeof(Box)) return false;
+                        else { MoveBox(direction); }
+                    }
+                    break;
+
+                case Direction.LEFT:
+                    if (board.LoadedBoard[playerX - 1, playerY].GetType() == typeof(Wall)) return false;
+                    if (board.LoadedBoard[playerX - 1, playerY].Object?.GetType() == typeof(Box))
+                    {
+                        if (board.LoadedBoard[playerX - 2, playerY].GetType() == typeof(Wall) || board.LoadedBoard[playerX - 2, playerY].Object?.GetType() == typeof(Box)) return false;
+                        else { MoveBox(direction); }
+                    }
+                    break;
+
+                case Direction.RIGHT:
+                    if (board.LoadedBoard[playerX + 1, playerY].GetType() == typeof(Wall)) return false;
+                    if (board.LoadedBoard[playerX + 1, playerY].Object?.GetType() == typeof(Box))
+                    {
+                        if (board.LoadedBoard[playerX + 2, playerY].GetType() == typeof(Wall) || board.LoadedBoard[playerX + 2, playerY].Object?.GetType() == typeof(Box)) return false;
+                        else { MoveBox(direction); }
+                    }
+                    break;
             }
             return true;
         }
 
         private void MoveBox(Direction direction)
         {
-            if (direction == Direction.UP)
+            switch (direction)
             {
-                board.LoadedBoard[playerX, playerY - 2].Object = board.LoadedBoard[playerX, playerY - 1].Object;
+                case Direction.UP:
+                    board.LoadedBoard[playerX, playerY - 2].Object = board.LoadedBoard[playerX, playerY - 1].Object;
+                    break;
+
+                case Direction.DOWN:
+                    board.LoadedBoard[playerX, playerY + 2].Object = board.LoadedBoard[playerX, playerY + 1].Object;
+                    break;
+
+                case Direction.LEFT:
+                    board.LoadedBoard[playerX - 2, playerY].Object = board.LoadedBoard[playerX - 1, playerY].Object;
+                    break;
+
+                case Direction.RIGHT:
+                    board.LoadedBoard[playerX + 2, playerY].Object = board.LoadedBoard[playerX + 1, playerY].Object;
+                    break;
             }
-            if (direction == Direction.DOWN)
-            {
-                board.LoadedBoard[playerX, playerY + 2].Object = board.LoadedBoard[playerX, playerY + 1].Object;
-            }
-            if (direction == Direction.LEFT)
-            {
-                board.LoadedBoard[playerX - 2, playerY].Object = board.LoadedBoard[playerX - 1, playerY].Object;
-            }
-            if (direction == Direction.RIGHT)
-            {
-                board.LoadedBoard[playerX + 2, playerY].Object = board.LoadedBoard[playerX + 1, playerY].Object;
-            }
+            
         }
     }
 }

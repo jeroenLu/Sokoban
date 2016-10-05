@@ -22,9 +22,10 @@ namespace Sokoban
 
             //Kan evt mooier door loadboard een array te laten returnen ipv deze eerst op te slaan ??? 
             LoadBoard();
+            Console.Clear();
             Game.AddBoard(LoadedBoard);
             _playing = true;
-            Game.StartGame();
+            Game.CreateObjectMover();
             while (_playing)
             {
                 Direction direction = ReadInput();

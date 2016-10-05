@@ -19,7 +19,7 @@ namespace Sokoban
         }
 
 
-        internal void StartGame()
+        internal void CreateObjectMover()
         {
             ObjectMover = new ObjectMover(Board, Player);
         }
@@ -27,7 +27,6 @@ namespace Sokoban
         public void AddBoard(BaseField[,] board)
         {
             Board = new Board(board);
-            // tijdelijk hier show aan roepen, later verplaatsen --------------------------------------------
             Board.ShowBoard();
         }
 
@@ -42,7 +41,6 @@ namespace Sokoban
         {
             Console.Clear();
             ObjectMover.TryMove(direction);
-            Console.WriteLine(direction);
             Board.ShowBoard();
         }
     }
