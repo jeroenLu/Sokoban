@@ -54,7 +54,7 @@ namespace Sokoban
             {
                 for (int x = 0; x < LoadedBoard.GetLength(0); x++)
                 {
-                    if (LoadedBoard[x, y].GetType() == typeof(EndField))
+                    if (LoadedBoard[x, y]?.GetType() == typeof(EndField))
                     {
                         if (LoadedBoard[x, y].Object?.GetType() != typeof(Box))
                         {
@@ -108,14 +108,20 @@ namespace Sokoban
             string[] fileLines = File.ReadAllLines(path);
 
             _levelHeight = fileLines.Length;
-            _levelWidth = fileLines[0].Length;           
+            for (int i = 0; i < _levelHeight; i++)
+            {
+                if (fileLines[i].Length > _levelWidth)
+                {
+                    _levelWidth = fileLines[i].Length;
+                }
+            }
 
             LoadedBoard = new BaseField[_levelWidth, _levelHeight];
 
             _levelHeight = 0;
             foreach (var line in fileLines)
             {
-                for (int x = 0; x < _levelWidth; x++)
+                for (int x = 0; x < line.Length; x++)
                 {
                     switch (line.ElementAt(x))
                     {

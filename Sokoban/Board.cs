@@ -24,10 +24,16 @@ namespace Sokoban
             width = LoadedBoard.GetLength(0);
             height = LoadedBoard.GetLength(1);
 
+
             for (int i = 0; i < height; i++)
             {
                 for (int x = 0; x < width; x++)
                 {
+                    if (LoadedBoard[x, i] == null)
+                    {
+                        Console.Write(" ");
+                        continue;
+                    }
                     if (LoadedBoard[x, i].GetType() == typeof(Wall))
                     {
                         Console.Write("#");

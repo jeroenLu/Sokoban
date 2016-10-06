@@ -26,7 +26,7 @@ namespace Sokoban
             {
                 for(int x = 0; x < board.GetLength(0); x++)
                 {
-                    if(board[x,y].Object?.GetType() == typeof(Player))
+                    if(board[x,y]?.Object?.GetType() == typeof(Player))
                     {
                         playerX = x;
                         playerY = y;
