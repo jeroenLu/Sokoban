@@ -13,141 +13,133 @@ namespace Sokoban
         private Game Game;
         private BaseField[,] LoadedBoard;
         private int _levelWidth, _levelHeight;
-        private bool _playing;
+        private bool _solved;
 
 
         internal void SetUpGame()
         {
-            Game = new Game();
-
-            //Kan evt mooier door loadboard een array te laten returnen ipv deze eerst op te slaan ??? 
-            LoadBoard();
-            Console.Clear();
-            Game.AddBoard(LoadedBoard);
-            _playing = true;
-            Game.CreateObjectMover();
-            while (_playing)
+            while (true)
             {
-                Direction direction = ReadInput();
-                if (direction != Direction.INVALID)
+                Game = new Game();
+                LoadBoard();
+                Console.Clear();
+                Game.AddBoard(LoadedBoard);
+                Game.CreateObjectMover();
+
+                while (!_solved)
                 {
-                    Game.Move(direction);
-                    if (CheckGameOver())
+                    Direction direction = ReadInput();
+                    if (direction != Direction.INVALID)
                     {
-                        _playing = false;
+                        Game.Move(direction);
+                        CheckGameOver();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid move");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Invalid move");
-                }
+                Console.WriteLine("Gefelicteerd, level opgelost!!! Druk op een toets voor menu of s om te stoppen");
+                Console.ReadKey();
+                Console.Clear();
             }
-            Console.WriteLine("Congratulations!! Thank you for playing Sokoban");
-            Console.ReadKey();
-            
         }
 
-        private bool CheckGameOver()
+        private void CheckGameOver()
         {
-            bool GameOver = true;
-            for (int y = 0; y < LoadedBoard.GetLength(1); y++)
+            _solved = true;
+            for (var y = 0; y < LoadedBoard.GetLength(1); y++)
             {
-                for (int x = 0; x < LoadedBoard.GetLength(0); x++)
+                for (var x = 0; x < LoadedBoard.GetLength(0); x++)
                 {
-                    if (LoadedBoard[x, y]?.GetType() == typeof(EndField))
+                    if (LoadedBoard[x, y]?.GetType() != typeof(EndField)) continue;
+                    if (LoadedBoard[x, y].Object?.GetType() != typeof(Box))
                     {
-                        if (LoadedBoard[x, y].Object?.GetType() != typeof(Box))
-                        {
-                            GameOver = false;
-                        }
+                        _solved = false;
                     }
                 }
             }
-            return GameOver;
         }
 
         private Direction ReadInput()
         {
             ConsoleKeyInfo input = Console.ReadKey();
-            if(input.Key == ConsoleKey.UpArrow) { return Direction.UP; }
-            if (input.Key == ConsoleKey.DownArrow) { return Direction.DOWN; }
-            if (input.Key == ConsoleKey.LeftArrow) { return Direction.LEFT; }
-            if (input.Key == ConsoleKey.RightArrow) { return Direction.RIGHT; }
-            if (input.Key == ConsoleKey.R) { Console.Clear(); SetUpGame(); }
-            if (input.Key == ConsoleKey.S) { Environment.Exit(0); }
+            switch (input.Key)
+            {
+                case ConsoleKey.UpArrow:    return Direction.UP;
+                case ConsoleKey.DownArrow:  return Direction.DOWN;
+                case ConsoleKey.LeftArrow:  return Direction.LEFT;
+                case ConsoleKey.RightArrow: return Direction.RIGHT;
+                case ConsoleKey.R:          Console.Clear(); SetUpGame(); break;
+            }
+            if (input.Key == ConsoleKey.S)
+            {
+                Environment.Exit(0);
+            }
             return Direction.INVALID;
         }
 
         private void LoadBoard()
         {
-            var chosen = false;
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"levels\doolhof");
-
-            while (!chosen)
+            var validatedLevel = false; 
+            while (!validatedLevel)
             {
-                Console.WriteLine("Please input the level you want to select (1 - 4)");
-
-                // Hier wordt input van de user gevraagd welk level hij wil laden
-                char selectedLevel;
-                if (char.TryParse(Console.ReadLine(), out selectedLevel))
+                Console.WriteLine("Selecteer het level dat je wil spelen en druk op Enter (1 - 4)");
+                string path = ((Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                @"levels\doolhof")) + Console.ReadLine())+ ".txt";
+                
+                try
                 {
-                    path += selectedLevel + ".txt";
-                    chosen = true;
-                }
-                else
-                {
-                    // Kan later evt weggehaald worden -------------------------------------------------------
-                    Console.WriteLine("Not a valid input! ");
-                }
-            }
+                    string[] fileLines = File.ReadAllLines(path);
+                    _levelHeight = fileLines.Length;
 
-
-
-            // Hier moeten nog exceptions worden afgevangen!!!! -------------------------------------------------------------
-
-            string[] fileLines = File.ReadAllLines(path);
-
-            _levelHeight = fileLines.Length;
-            for (int i = 0; i < _levelHeight; i++)
-            {
-                if (fileLines[i].Length > _levelWidth)
-                {
-                    _levelWidth = fileLines[i].Length;
-                }
-            }
-
-            LoadedBoard = new BaseField[_levelWidth, _levelHeight];
-
-            _levelHeight = 0;
-            foreach (var line in fileLines)
-            {
-                for (int x = 0; x < line.Length; x++)
-                {
-                    switch (line.ElementAt(x))
+                    for (var i = 0; i < _levelHeight; i++)
                     {
-                        case '#':
-                            LoadedBoard[x, _levelHeight] = new Wall();
-                            break;
-                        case 'o':
-                            LoadedBoard[x, _levelHeight] = new Field {Object = new Box()};
-                            break;
-                        case '.':
-                            LoadedBoard[x, _levelHeight] = new Field();
-                            break;
-                        case 'x':
-                            LoadedBoard[x, _levelHeight] = new EndField();
-                            break;
-                        case '@':
-                            LoadedBoard[x, _levelHeight] = new Field { Object = Game.GetPlayer() };
-                            break;
-                        default:
-                            LoadedBoard[x, _levelHeight] = new BaseField();
-                            break;
+                        if (fileLines[i].Length > _levelWidth)
+                        {
+                            _levelWidth = fileLines[i].Length;
+                        }
                     }
+
+                    LoadedBoard = new BaseField[_levelWidth, _levelHeight];
+
+                    _levelHeight = 0;
+                    foreach (var line in fileLines)
+                    {
+                        for (var x = 0; x < line.Length; x++)
+                        {
+                            switch (line.ElementAt(x))
+                            {
+                                case '#':
+                                    LoadedBoard[x, _levelHeight] = new Wall();
+                                    break;
+                                case 'o':
+                                    LoadedBoard[x, _levelHeight] = new Field { Object = new Box() };
+                                    break;
+                                case '.':
+                                    LoadedBoard[x, _levelHeight] = new Field();
+                                    break;
+                                case 'x':
+                                    LoadedBoard[x, _levelHeight] = new EndField();
+                                    break;
+                                case '@':
+                                    LoadedBoard[x, _levelHeight] = new Field { Object = Game.GetPlayer() };
+                                    break;
+                                default:
+                                    LoadedBoard[x, _levelHeight] = new BaseField();
+                                    break;
+                            }
+                        }
+                        _levelHeight++;
+                    }
+                    validatedLevel = true;
                 }
-                _levelHeight++;
+                catch (Exception)
+                {
+                    Console.WriteLine("De opgegeven file kan niet worden geleden, probeer opnieuw");
+
+                }
             }
         }
-
     }
 }

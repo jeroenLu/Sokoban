@@ -22,9 +22,9 @@ namespace Sokoban
 
         public void SearchPlayer(BaseField[,] board)
         {
-            for(int y = 0; y < board.GetLength(1); y++)
+            for(var y = 0; y < board.GetLength(1); y++)
             {
-                for(int x = 0; x < board.GetLength(0); x++)
+                for(var x = 0; x < board.GetLength(0); x++)
                 {
                     if(board[x,y]?.Object?.GetType() == typeof(Player))
                     {
@@ -33,9 +33,6 @@ namespace Sokoban
                     }
                 }
             }
-
-
-
         }
 
         internal void TryMove(Direction direction)

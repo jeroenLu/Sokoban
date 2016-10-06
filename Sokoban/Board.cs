@@ -20,14 +20,12 @@ namespace Sokoban
 
         public void ShowBoard()
         {
-
             width = LoadedBoard.GetLength(0);
             height = LoadedBoard.GetLength(1);
 
-
-            for (int i = 0; i < height; i++)
+            for (var i = 0; i < height; i++)
             {
-                for (int x = 0; x < width; x++)
+                for (var x = 0; x < width; x++)
                 {
                     if (LoadedBoard[x, i] == null)
                     {
@@ -46,17 +44,13 @@ namespace Sokoban
                             Console.Write("@");
                             continue;
                         }
-                        else if (LoadedBoard[x, i].Object?.GetType() == typeof(Box))
+                        if (LoadedBoard[x, i].Object?.GetType() == typeof(Box))
                         {
                             Console.Write("o");
                             continue;
                         }
-                        else
-                        {
-                            Console.Write(".");
-                            continue;
-                        }
-                       
+                        Console.Write(".");
+                        continue;
                     }
                     if (LoadedBoard[x, i].GetType() == typeof(EndField))
                     {
@@ -73,16 +67,12 @@ namespace Sokoban
                         Console.Write("x");
                         continue;
                     }
-                    if (LoadedBoard[x, i].GetType() == typeof(BaseField))
-                    {
-                        Console.Write(" ");
-                        continue;
-                    }
-                    
+                    if (LoadedBoard[x, i].GetType() != typeof(BaseField)) continue;
+                    Console.Write(" ");
+                    continue;
                 }
                 Console.WriteLine();
             }
-
         }
     }
 }

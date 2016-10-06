@@ -8,9 +8,9 @@ namespace Sokoban
 {
     class Game
     {
-        Board Board;
-        ObjectMover ObjectMover;
-        Player Player;
+        private Board Board;
+        private ObjectMover ObjectMover;
+        private Player Player;
 
         public Game()
         {
