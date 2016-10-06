@@ -25,7 +25,7 @@ namespace Sokoban
                 Console.Clear();
                 Game.AddBoard(LoadedBoard);
                 Game.CreateObjectMover();
-
+                
                 while (!_solved)
                 {
                     Direction direction = ReadInput();
@@ -42,6 +42,7 @@ namespace Sokoban
                 Console.WriteLine("Gefelicteerd, level opgelost!!! Druk op een toets voor menu of s om te stoppen");
                 Console.ReadKey();
                 Console.Clear();
+                _solved = false;
             }
         }
 
