@@ -25,7 +25,7 @@ namespace Sokoban
                 Console.Clear();
                 Game.AddBoard(LoadedBoard);
                 Game.CreateObjectMover();
-                
+
                 while (!_solved)
                 {
                     Direction direction = ReadInput();
@@ -67,28 +67,28 @@ namespace Sokoban
             ConsoleKeyInfo input = Console.ReadKey();
             switch (input.Key)
             {
-                case ConsoleKey.UpArrow:    return Direction.UP;
-                case ConsoleKey.DownArrow:  return Direction.DOWN;
-                case ConsoleKey.LeftArrow:  return Direction.LEFT;
+                case ConsoleKey.UpArrow: return Direction.UP;
+                case ConsoleKey.DownArrow: return Direction.DOWN;
+                case ConsoleKey.LeftArrow: return Direction.LEFT;
                 case ConsoleKey.RightArrow: return Direction.RIGHT;
-                case ConsoleKey.R:          Console.Clear(); SetUpGame(); break;
-            }
-            if (input.Key == ConsoleKey.S)
-            {
-                Environment.Exit(0);
+                case ConsoleKey.R:          // should restart the current game
+                case ConsoleKey.S: Console.Clear(); SetUpGame(); break;
             }
             return Direction.INVALID;
         }
 
         private void LoadBoard()
         {
-            var validatedLevel = false; 
+            var validatedLevel = false;
             while (!validatedLevel)
             {
                 Console.WriteLine("Selecteer het level dat je wil spelen en druk op Enter (1 - 4)");
-                string path = ((Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                @"levels\doolhof")) + Console.ReadLine())+ ".txt";
-                
+                string path = (Path.Combine(Path.GetDirectoryName(path: Assembly.GetExecutingAssembly().Location),
+                    @"levels\doolhof"));
+                char input = Console.ReadKey().KeyChar;
+                if (input == 's') { Environment.Exit(0); }
+                path += input + ".txt";
+
                 try
                 {
                     string[] fileLines = File.ReadAllLines(path);
